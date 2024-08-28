@@ -1,0 +1,29 @@
+#$ _NVVM_BRANCH_=nvvm
+#$ _SPACE_= 
+#$ _CUDART_=cudart
+#$ _HERE_=/usr/local/cuda-12.1/bin
+#$ _THERE_=/usr/local/cuda-12.1/bin
+#$ _TARGET_SIZE_=
+#$ _TARGET_DIR_=
+#$ _TARGET_DIR_=targets/x86_64-linux
+#$ TOP=/usr/local/cuda-12.1/bin/..
+#$ NVVMIR_LIBRARY_DIR=/usr/local/cuda-12.1/bin/../nvvm/libdevice
+#$ LD_LIBRARY_PATH=/usr/local/cuda-12.1/bin/../lib:/usr/local/cuda-12.1/lib64:/usr/local/cuda-12.1/extras/CUPTI/lib64:
+#$ PATH=/usr/local/cuda-12.1/bin/../nvvm/bin:/usr/local/cuda-12.1/bin:/usr/local/cuda-12.1/bin:/home/hgx/miniforge3/envs/sundaresan/bin:/home/hgx/miniforge3/condabin:/home/sundaresan/.vscode-server/cli/servers/Stable-fee1edb8d6d72a0ddff41e5f71a671c23ed924b9/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+#$ INCLUDES="-I/usr/local/cuda-12.1/bin/../targets/x86_64-linux/include"  
+#$ LIBRARIES=  "-L/usr/local/cuda-12.1/bin/../targets/x86_64-linux/lib/stubs" "-L/usr/local/cuda-12.1/bin/../targets/x86_64-linux/lib"
+#$ CUDAFE_FLAGS=
+#$ PTXAS_FLAGS=
+#$ gcc -D__CUDA_ARCH_LIST__=700 -E -x c++ -D__CUDACC__ -D__NVCC__  "-I/usr/local/cuda-12.1/bin/../targets/x86_64-linux/include"    -D__CUDACC_VER_MAJOR__=12 -D__CUDACC_VER_MINOR__=1 -D__CUDACC_VER_BUILD__=105 -D__CUDA_API_VER_MAJOR__=12 -D__CUDA_API_VER_MINOR__=1 -D__NVCC_DIAG_PRAGMA_SUPPORT__=1 -include "cuda_runtime.h" -m64 "vec_add_float4.cu" -o "/tmp/tmpxft_00006a33_00000000-5_vec_add_float4.cpp4.ii" 
+#$ cudafe++ --c++17 --gnu_version=120200 --display_error_number --orig_src_file_name "vec_add_float4.cu" --orig_src_path_name "/home/sundaresan/NVCC_debug_flag_comparison/vec_add_float4.cu" --allow_managed  --m64 --parse_templates --gen_c_file_name "/tmp/tmpxft_00006a33_00000000-6_vec_add_float4.cudafe1.cpp" --stub_file_name "tmpxft_00006a33_00000000-6_vec_add_float4.cudafe1.stub.c" --gen_module_id_file --module_id_file_name "/tmp/tmpxft_00006a33_00000000-4_vec_add_float4.module_id" "/tmp/tmpxft_00006a33_00000000-5_vec_add_float4.cpp4.ii" 
+#$ gcc -D__CUDA_ARCH__=700 -D__CUDA_ARCH_LIST__=700 -E -x c++  -DCUDA_DOUBLE_MATH_FUNCTIONS -D__CUDACC__ -D__NVCC__  "-I/usr/local/cuda-12.1/bin/../targets/x86_64-linux/include"    -D__CUDACC_VER_MAJOR__=12 -D__CUDACC_VER_MINOR__=1 -D__CUDACC_VER_BUILD__=105 -D__CUDA_API_VER_MAJOR__=12 -D__CUDA_API_VER_MINOR__=1 -D__NVCC_DIAG_PRAGMA_SUPPORT__=1 -include "cuda_runtime.h" -m64 "vec_add_float4.cu" -o "/tmp/tmpxft_00006a33_00000000-9_vec_add_float4.cpp1.ii" 
+#$ cicc --c++17 --gnu_version=120200 --display_error_number --orig_src_file_name "vec_add_float4.cu" --orig_src_path_name "/home/sundaresan/NVCC_debug_flag_comparison/vec_add_float4.cu" --allow_managed   -arch compute_70 -m64 --no-version-ident -ftz=0 -prec_div=1 -prec_sqrt=1 -fmad=1 --include_file_name "tmpxft_00006a33_00000000-3_vec_add_float4.fatbin.c" -generate-line-info -tused --module_id_file_name "/tmp/tmpxft_00006a33_00000000-4_vec_add_float4.module_id" --gen_c_file_name "/tmp/tmpxft_00006a33_00000000-6_vec_add_float4.cudafe1.c" --stub_file_name "/tmp/tmpxft_00006a33_00000000-6_vec_add_float4.cudafe1.stub.c" --gen_device_file_name "/tmp/tmpxft_00006a33_00000000-6_vec_add_float4.cudafe1.gpu"  "/tmp/tmpxft_00006a33_00000000-9_vec_add_float4.cpp1.ii" -o "/tmp/tmpxft_00006a33_00000000-6_vec_add_float4.ptx"
+#$ ptxas -arch=sm_70 -m64  --generate-line-info "/tmp/tmpxft_00006a33_00000000-6_vec_add_float4.ptx"  -o "/tmp/tmpxft_00006a33_00000000-10_vec_add_float4.sm_70.cubin" 
+#$ fatbinary -64 --ident="vec_add_float4.cu" --cmdline=" --generate-line-info " --cicc-cmdline="-generate-line-info -ftz=0 -prec_div=1 -prec_sqrt=1 -fmad=1 " "--image3=kind=elf,sm=70,file=/tmp/tmpxft_00006a33_00000000-10_vec_add_float4.sm_70.cubin" "--image3=kind=ptx,sm=70,file=/tmp/tmpxft_00006a33_00000000-6_vec_add_float4.ptx" --embedded-fatbin="/tmp/tmpxft_00006a33_00000000-3_vec_add_float4.fatbin.c" 
+#$ rm /tmp/tmpxft_00006a33_00000000-3_vec_add_float4.fatbin
+#$ gcc -D__CUDA_ARCH__=700 -D__CUDA_ARCH_LIST__=700 -c -x c++  -DCUDA_DOUBLE_MATH_FUNCTIONS "-I/usr/local/cuda-12.1/bin/../targets/x86_64-linux/include"   -m64 "/tmp/tmpxft_00006a33_00000000-6_vec_add_float4.cudafe1.cpp" -o "/tmp/tmpxft_00006a33_00000000-11_vec_add_float4.o" 
+#$ nvlink -m64 --arch=sm_70 --register-link-binaries="/tmp/tmpxft_00006a33_00000000-7_a_dlink.reg.c"    "-L/usr/local/cuda-12.1/bin/../targets/x86_64-linux/lib/stubs" "-L/usr/local/cuda-12.1/bin/../targets/x86_64-linux/lib" -cpu-arch=X86_64 "/tmp/tmpxft_00006a33_00000000-11_vec_add_float4.o"  -lcudadevrt  -o "/tmp/tmpxft_00006a33_00000000-12_a_dlink.sm_70.cubin" --host-ccbin "gcc"
+#$ fatbinary -64 --ident="vec_add_float4.cu " --cmdline=" --generate-line-info " --cicc-cmdline="-generate-line-info -ftz=0 -prec_div=1 -prec_sqrt=1 -fmad=1 " -link "--image3=kind=elf,sm=70,file=/tmp/tmpxft_00006a33_00000000-12_a_dlink.sm_70.cubin" --embedded-fatbin="/tmp/tmpxft_00006a33_00000000-8_a_dlink.fatbin.c" 
+#$ rm /tmp/tmpxft_00006a33_00000000-8_a_dlink.fatbin
+#$ gcc -D__CUDA_ARCH_LIST__=700 -c -x c++ -DFATBINFILE="\"/tmp/tmpxft_00006a33_00000000-8_a_dlink.fatbin.c\"" -DREGISTERLINKBINARYFILE="\"/tmp/tmpxft_00006a33_00000000-7_a_dlink.reg.c\"" -I. -D__NV_EXTRA_INITIALIZATION= -D__NV_EXTRA_FINALIZATION= -D__CUDA_INCLUDE_COMPILER_INTERNAL_HEADERS__  "-I/usr/local/cuda-12.1/bin/../targets/x86_64-linux/include"    -D__CUDACC_VER_MAJOR__=12 -D__CUDACC_VER_MINOR__=1 -D__CUDACC_VER_BUILD__=105 -D__CUDA_API_VER_MAJOR__=12 -D__CUDA_API_VER_MINOR__=1 -D__NVCC_DIAG_PRAGMA_SUPPORT__=1 -m64 "/usr/local/cuda-12.1/bin/crt/link.stub" -o "/tmp/tmpxft_00006a33_00000000-13_a_dlink.o" 
+#$ g++ -D__CUDA_ARCH_LIST__=700 -m64 -Wl,--start-group "/tmp/tmpxft_00006a33_00000000-13_a_dlink.o" "/tmp/tmpxft_00006a33_00000000-11_vec_add_float4.o"   "-L/usr/local/cuda-12.1/bin/../targets/x86_64-linux/lib/stubs" "-L/usr/local/cuda-12.1/bin/../targets/x86_64-linux/lib"  -lcudadevrt  -lcudart_static  -lrt -lpthread  -ldl  -Wl,--end-group -o "a.out" 
