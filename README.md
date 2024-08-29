@@ -13,5 +13,6 @@ Program used: A simple two vector addition program which utilises CUDA's float4 
 .address_size 64
 ```
 2. If -G and -dopt on are both enabled, only lineinfo is generated. This does not affect operations of ptx and sass. This is documented in nvcc --help too.
-3. Now suppose we generate the ptx file with -G and then later generate .sass file (using ptxas and further followed by cuobjdump), this sass file is still equivalent to the one generated completely with -G flag. This is verified by comparing files "vec_add_float4_withDebugFlag_ptxasAssembledWithoutDebugFlag.sass" and "vec_add_float4_withDebugFlag.sass". Thus this experiment also shows that it is important to generate optimal ptx.
-4. Dryrun (nvcc -dryrun) output results are also provided to understand the flags used at every stage. 
+3. Now suppose we generate the ptx file with -G and then later generate .sass file (using ptxas and further followed by cuobjdump), this sass file is still equivalent to the one generated completely with -G flag. This is verified by comparing files "vec_add_float4_withDebugFlag_ptxasAssembledWithoutDebugFlag.sass" and "vec_add_float4_withDebugFlag.sass". This is because "debug" is specified in the target and ptxas refuses to use O3 optimization in such case.
+4. Next we remove "debug" in the target directive of ptx file. The new file name is vec_add_float4_withDebugFlag_debugRemovedInTarget.ptx. Then we compile it with ptxas -O3 -arch=sm_70, followed by cuobjdump to sass. This does lead to considerable optimization. However, there are certain additional instructions in comparison to that generated without debug flag.
+5. Dryrun (nvcc -dryrun) output results are also provided to understand the flags used at every stage. 
